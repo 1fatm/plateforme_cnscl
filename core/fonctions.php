@@ -60,6 +60,7 @@ function connection_base_de_données()
              die("Erreur lors de la réinitialisation du mot de passe : " . mysqli_error($connexion));
          } else {
             echo "Mot de passe réinitialisé avec succès";
+            header("Location:?page=connexion");
         }
         mysqli_close($connexion);
     }
