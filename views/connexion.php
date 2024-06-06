@@ -1,17 +1,18 @@
 <?php
-$email_error = $password_error = ""; 
+$emailErreur = "";
+$motDePasseErreur = ""; 
 
 
     if(isset($_POST['se_connecter'])) {
         
         if(empty($_POST['email'])) {
-            $email_error = "Veuillez entrer votre email.";
+            $emailErreur = "Veuillez entrer votre email.";
         }
 
         if(empty($_POST['motdepasse'])) {
-            $password_error = "Veuillez entrer votre mot de passe.";
+            $motDePasseErreur = "Veuillez entrer votre mot de passe.";
         }
-        if(empty($email_error) && empty($password_error)) {
+        if(empty($emailErreur) && empty($motDePasseErreur)) {
             include("./core/fonctions.php");
             connection_plateforme($_POST['email'],$_POST['motdepasse']);
         }
@@ -32,13 +33,13 @@ $email_error = $password_error = "";
                         <div class="col -lg-7">
                             <input type="email" placeholder="Entrer votre mail " class="form-control my-3 p-4" name="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
                              <div class="invalid-feedback"></div>
-                            <span class="error-message"><?php echo $email_error; ?></span> 
+                            <span class="error-message"><?php echo $emailErreur; ?></span> 
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col -lg-7">
-                            <input type="password" placeholder="Entrer votre mot de passe " class="form-control my-3 p-4" name="motdepasse" name="email" value="<?php echo isset($_POST['motdepasse']) ? $_POST['motdepasse'] : ''; ?>">
-                            <span class="error-message"><?php echo $password_error; ?></span> 
+                            <input type="password" placeholder="Entrer votre mot de passe " class="form-control my-3 p-4" name="motdepasse" name="email" value="<?php echo isset($_POST['']) ? $_POST['motdepasse'] : ''; ?>">
+                            <span class="error-message"><?php echo $motDePasseErreur; ?></span> 
                         </div>
                     </div>
                     <div class="form-row">
