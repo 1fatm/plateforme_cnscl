@@ -1,8 +1,8 @@
 <section class="Form  my-4 mx-5">
     <div class="Container">
             <div class ="row no-gutters">
-                <div class="col-lg-5">
-                    <img src="CNSCL_Mines.jpg"  class="img-fluid" alt="">
+                <div class="col-lg-5 image-container">
+                    <img src="./include/image2.jpg"  class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-7 px-5 pt-5">
                     <h1 class="h3 mb-3 fw-normal">Lien de réinitialisation du mot de passe</h1>
@@ -14,7 +14,7 @@
                             <div class="col-lg-7">
                                 <input type="email" placeholder="Entrer votre adresse mail " class="form-control my-3 p-4"  name="mail" value="<?php echo isset($_POST['mail']) ? $_POST['mail'] : ''; ?>">
                                 <div class="invalid-feedback"></div>
-
+                                
                             </div>
                         </div>
                         <div class="form-row">
@@ -53,4 +53,5 @@ if(isset($_POST["reinitialiser"])){
         echo " <script>alert('Les deux mots de passe ne correspondent pas.');</script>";
     }
 }
+
 ?>
