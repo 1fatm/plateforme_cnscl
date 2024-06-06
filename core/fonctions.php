@@ -50,9 +50,6 @@ function connection_base_de_données()
             }
         }
 
-
-      
-
     
     function reinitialiser_mot_de_passe($email,$motdepassenouv)
     {

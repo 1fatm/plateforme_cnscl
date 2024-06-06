@@ -5,14 +5,14 @@
                     <img src="CNSCL_Mines.jpg"  class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-7 px-5 pt-5">
-                    <h1 class="h3 mb-3 fw-normal">Lien de réinitialisation de mmot de passe</h1>
+                    <h1 class="h3 mb-3 fw-normal">Lien de réinitialisation du mot de passe</h1>
                     <p class="text-muted">
                         Veuillez saisir votre nouveau mot de passe
                     </p>
                     <form method="Post">
                         <div class="form-row">
                                 <div class="col -lg-7">
-                                    <input type="password" placeholder="Entrer votreadresse mail " class="form-control my-3 p-4"  name="mail">
+                                    <input type="email" placeholder="Entrer votre adresse mail " class="form-control my-3 p-4"  name="mail">
                                 </div>
                     </div>
                     <div class="form-row">
