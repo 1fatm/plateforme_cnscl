@@ -29,7 +29,7 @@ function connection_base_de_données()
         else
         {
             echo "Insertion réussie";
-            header('location: ?page=connexion');
+            header('location:?page=connexion');
         }
         mysqli_close($connexion);
 

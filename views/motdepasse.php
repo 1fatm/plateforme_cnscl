@@ -12,7 +12,9 @@
                     <form method="post">
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="email" placeholder="Entrer votre adresse mail " class="form-control my-3 p-4"  name="mail">
+                                <input type="email" placeholder="Entrer votre adresse mail " class="form-control my-3 p-4"  name="mail" value="<?php echo isset($_POST['mail']) ? $_POST['mail'] : ''; ?>">
+                                <div class="invalid-feedback"></div>
+
                             </div>
                         </div>
                         <div class="form-row">
@@ -42,13 +44,13 @@ if(isset($_POST["reinitialiser"])){
     $mail = $_POST["mail"];
     $motdepasse = $_POST["motdepasse"];
     $nouveau_motdepasse = $_POST["nouveau_motdepasse"];
-    
     if($motdepasse == $nouveau_motdepasse) {
+     
         reinitialiser_mot_de_passe($mail, $nouveau_motdepasse);
-        header("Location: connection.php");
+        
         exit; 
     } else {
-        echo "Les deux mots de passe ne correspondent pas.";
+        echo " <script>alert('Les deux mots de passe ne correspondent pas.');</script>";
     }
 }
 ?>
