@@ -1,3 +1,22 @@
+<?php
+session_start();
+include './include/header.php';
+if(isset($_POST["reinitialiser"])){
+    include("./core/fonctions.php");
+    $mail = $_POST["mail"];
+    $motdepasse = $_POST["motdepasse"];
+    $nouveau_motdepasse = $_POST["nouveau_motdepasse"];
+    if($motdepasse == $nouveau_motdepasse) {
+     
+        reinitialiser_mot_de_passe($mail, $nouveau_motdepasse);
+        
+        exit; 
+    } else {
+        echo " <script>alert('Les deux mots de passe ne correspondent pas.');</script>";
+    }
+}
+
+?>
 <section class="Form  my-4 mx-5">
     <div class="Container">
             <div class ="row no-gutters">
@@ -37,21 +56,4 @@
             </div>
         </div>
 </section>
-<?php
 
-if(isset($_POST["reinitialiser"])){
-    include("./core/fonctions.php");
-    $mail = $_POST["mail"];
-    $motdepasse = $_POST["motdepasse"];
-    $nouveau_motdepasse = $_POST["nouveau_motdepasse"];
-    if($motdepasse == $nouveau_motdepasse) {
-     
-        reinitialiser_mot_de_passe($mail, $nouveau_motdepasse);
-        
-        exit; 
-    } else {
-        echo " <script>alert('Les deux mots de passe ne correspondent pas.');</script>";
-    }
-}
-
-?>

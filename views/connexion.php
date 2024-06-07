@@ -1,8 +1,11 @@
 <?php
+session_start();
+include './include/header.php';
 $emailErreur = "";
 $motDePasseErreur = ""; 
 
 if(isset($_POST['se_connecter'])) {
+
     if(empty($_POST['email'])) {
         $emailErreur = "Veuillez entrer votre email.";
     }
@@ -10,16 +13,12 @@ if(isset($_POST['se_connecter'])) {
         $motDePasseErreur = "Veuillez entrer votre mot de passe.";
     }
     if(empty($emailErreur) && empty($motDePasseErreur)) {
+
         include("./core/fonctions.php");
         connection_plateforme($_POST['email'], $_POST['motdepasse']);
     }
 }
 ?>
-
-   
-    
-</head>
-<body>
 <section class="Form my-4 mx-5">
     <div class="container">
         <div class="row no-gutters">
@@ -31,7 +30,7 @@ if(isset($_POST['se_connecter'])) {
                 <p class="text-muted">Connectez-vous à votre compte pour accéder à votre espace personnel</p>
                 <form method="post">
                     <div class="form-group">
-                        <input type="email" placeholder="Entrer votre mail" class="form-control my-3 p-4" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                        <input type="email" placeholder="Entrer votre mail" class="form-control my-3 p-4" name="email" value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>">
                         <span class="error-message"><?php echo $emailErreur; ?></span>
                     </div>
                     <div class="form-group">

@@ -1,5 +1,4 @@
 <?php
-session_start();
 function connection_base_de_données() {
     $host = "localhost";
     $user = "root";
@@ -13,10 +12,18 @@ function connection_base_de_données() {
 }
 
 function insertion_base_de_données($nom, $prenom, $email, $nomEntreprise, $motDePasse) {
+  $_SESSION['nom']=$nom;
+  $_SESSION['prenom']=$prenom;
+  $_SESSION['nom_entreprise']=$nomEntreprise;
+ // $_SESSION['mot_de_passe']=$motDePasse;
+  
+
     $connexion = connection_base_de_données();
+    
     if (mailexistant($email)) {
         $_SESSION['message'] = 'Cette adresse mail existe déjà.';
         header('Location: ?page=inscription');
+        exit;
         
     } else {
         $motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT);
@@ -28,15 +35,17 @@ function insertion_base_de_données($nom, $prenom, $email, $nomEntreprise, $motD
             $_SESSION['message'] = 'Inscription réussie.';
             header('Location: ?page=connexion');
             exit;
+            
         }
         
     }
-    mysqli_close($connexion);
+   
 }
 
 function connection_plateforme($email, $motdepasse) {
+    $_SESSION['email']=$email;
+
     $connexion = connection_base_de_données();
-    $email = mysqli_real_escape_string($connexion, $email);
     $sql = "SELECT mot_de_passe FROM entreprise WHERE email = '$email'";
     $resultat = mysqli_query($connexion, $sql);
     
@@ -44,21 +53,22 @@ function connection_plateforme($email, $motdepasse) {
         $row = mysqli_fetch_assoc($resultat);
         $motdepasse_hache = $row['mot_de_passe'];
         if (password_verify($motdepasse, $motdepasse_hache)) {
+            
             header("Location: ?page=welcome");
-            exit;
+            exit();
         } else {
             $_SESSION['message'] = 'Mot de passe incorrect.';
         }
     } else {
         $_SESSION['message'] = 'Vous n\'êtes pas inscrit sur la plateforme.';
     }
-    
-    mysqli_close($connexion);
+    header("Location: ?page=connexion");
+
+    exit;
 }
 
 function reinitialiser_mot_de_passe($email, $motdepassenouv) {
     $connexion = connection_base_de_données();
-    $email = mysqli_real_escape_string($connexion, $email);
     $motDePasseNouvHache = password_hash($motdepassenouv, PASSWORD_DEFAULT);
     $requete = "UPDATE entreprise SET mot_de_passe='$motDePasseNouvHache' WHERE email='$email'";
     $resultat = mysqli_query($connexion, $requete);
@@ -66,11 +76,12 @@ function reinitialiser_mot_de_passe($email, $motdepassenouv) {
         die("Erreur lors de la réinitialisation du mot de passe : " . mysqli_error($connexion));
     } else {
         $_SESSION['message'] = 'Mot de passe réinitialisé avec succès.';
-        echo "<script> window.location.href='?page=connexion'; </script>";
+        header('Location:?page=connexion');
+        exit();
        
-        exit;
+        
     }
-    mysqli_close($connexion);
+ 
     
 }
 

@@ -1,9 +1,12 @@
 <?php
+session_start();
+include './include/header.php';
 $prenomErreur = "";
 $emailErreur = "";
 $nomErreur = "";
 $nomEntrepriseErreur = "";
 $motDePasseErreur = "";
+
 
 if (isset($_POST['inscrire'])) {
     if (empty($_POST['email'])) {
@@ -45,11 +48,11 @@ if (isset($_POST['inscrire'])) {
                 </p>
                 <form method="post">
                     <div class="form-group">
-                        <input type="text" placeholder="Entrer votre Nom" class="form-control my-3 p-4" name="nom" value="<?php echo isset($_POST['nom']) ? htmlspecialchars($_POST['nom']) : ''; ?>">
+                        <input type="text" placeholder="Entrer votre Nom" class="form-control my-3 p-4" name="nom" value="<?php echo isset($_SESSION['nom']) ? htmlspecialchars($_SESSION['nom']) : ''; ?>">
                         <span class="error-message"><?php echo $nomErreur; ?></span>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Entrer votre prenom" class="form-control my-3 p-4" name="prenom" value="<?php echo isset($_POST['prenom']) ? htmlspecialchars($_POST['prenom']) : ''; ?>">
+                        <input type="text" placeholder="Entrer votre prenom" class="form-control my-3 p-4" name="prenom" value="<?php echo isset($_SESSION['prenom']) ? htmlspecialchars($_SESSION['prenom']) : ''; ?>">
                         <span class="error-message"><?php echo $prenomErreur; ?></span>
                     </div>
                     <div class="form-group">
@@ -57,7 +60,7 @@ if (isset($_POST['inscrire'])) {
                         <span class="error-message"><?php echo $emailErreur; ?></span>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Entrer le nom de votre entreprise" class="form-control my-3 p-4" name="nom_entreprise" value="<?php echo isset($_POST['nom_entreprise']) ? htmlspecialchars($_POST['nom_entreprise']) : ''; ?>">
+                        <input type="text" placeholder="Entrer le nom de votre entreprise" class="form-control my-3 p-4" name="nom_entreprise" value="<?php echo isset($_SESSION['nom_entreprise']) ? htmlspecialchars($_SESSION['nom_entreprise']) : ''; ?>">
                         <span class="error-message"><?php echo $nomEntrepriseErreur; ?></span>
                     </div>
                     <div class="form-group">
