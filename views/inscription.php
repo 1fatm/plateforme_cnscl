@@ -32,7 +32,6 @@ if (isset($_POST['inscrire'])) {
     }
 }
 ?>
-
 <section class="Form my-4 mx-5">
     <div class="container">
         <div class="row no-gutters">

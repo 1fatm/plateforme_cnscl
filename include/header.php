@@ -13,6 +13,8 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: white;
+            
         }
         .error-message {
             color: red;
@@ -43,7 +45,8 @@
             align-items: center;
             height: 100%;
             padding: 20px;
-            background-color: #33333333
+            background-color: #33333333;
+
         }
         .image-container img {
             max-width: 100%;
@@ -54,9 +57,25 @@
         .row
         {
             background:whitesmoke;
+            border-radius: 12px;
+        }
+        .message 
+        {
+            color: red;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
         }
         
     </style>
 
     
 </head>
+<body>
+<?php
+    if (isset($_SESSION['message'])) {
+        echo '<div class="message">' . $_SESSION['message'] . '</div>';
+        unset($_SESSION['message']); 
+    }
+    ?>
